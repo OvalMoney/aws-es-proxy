@@ -9,7 +9,7 @@ RUN addgroup -g 1000 golang \
 RUN apk add --no-cache git
 
 WORKDIR /go/src/app
-COPY --chown=golang:golang . .
+COPY . .
 
 RUN go-wrapper download
 RUN go-wrapper install
