@@ -1,8 +1,5 @@
 FROM golang:1.9.2-alpine3.6
 
-ENV PORT 9200
-ENV AWS_ES_HOST http://localhost:9200
-
 RUN addgroup -g 1000 golang \
     && adduser -u 1000 -G golang -s /bin/sh -D golang
 
@@ -17,6 +14,9 @@ RUN go build -o aws-es-proxy
 
 USER golang
 
+ENV PORT 9200
+ENV AWS_ES_HOST https://dummy-host.eu-west-1.es.amazonaws.com
+
 EXPOSE ${PORT}
 
-CMD ["./aws-es-proxy", "-listen", "0.0.0.0:$PORT", "-endpoint", "$AWS_ES_HOST"]
+CMD ["/bin/sh", "-c", "./aws-es-proxy -listen 0.0.0.0:$PORT -endpoint $AWS_ES_HOST"]
