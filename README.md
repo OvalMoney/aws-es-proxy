@@ -16,7 +16,7 @@ Download the latest [aws-es-proxy release](https://github.com/abutaha/aws-es-pro
 ### Build from Source
 
 #### Dependencies:
-* go1.5
+* go1.5+
 * [glide package manager](https://github.com/Masterminds/glide)
 
 
@@ -103,9 +103,29 @@ Usage of ./aws-es-proxy:
         Amazon ElasticSearch Endpoint (e.g: https://dummy-host.eu-west-1.es.amazonaws.com)
   -listen string
         Local TCP port to listen on (default "127.0.0.1:9200")
+  -log-to-file
+        Log user requests and ElasticSearch responses to files
+  -no-sign-reqs
+        Disable AWS Signature v4
+  -pretty
+        Prettify verbose and file output
   -verbose
         Print user requests
 ```
+
+## Docker
+
+There is an official docker image avaiable for aws-es-proxy. To run the image:
+
+```sh
+# Prints usage info (-h)
+docker run --rm -it abutaha/aws-es-proxy
+
+# Runs with custom command/args
+docker run --rm -it abutaha/aws-es-proxy ./aws-es-proxy -endpoint https://dummy-host.ap-southeast-2.es.amazonaws.com
+```
+
+To expose a port number other than the default 9200, pass an environment variable of `PORT_NUM` to docker with the port number you wish to expose for your service.
 
 ## Using HTTP Clients
 

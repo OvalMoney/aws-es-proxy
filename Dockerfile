@@ -19,4 +19,4 @@ ENV AWS_ES_HOST https://dummy-host.eu-west-1.es.amazonaws.com
 
 EXPOSE ${PORT}
 
-CMD ["/bin/sh", "-c", "./aws-es-proxy -listen 0.0.0.0:$PORT -endpoint $AWS_ES_HOST"]
+CMD ["./aws-es-proxy -listen 0.0.0.0:$PORT -endpoint $AWS_ES_HOST"]
